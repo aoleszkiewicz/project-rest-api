@@ -2,18 +2,26 @@ package com.project.services;
 
 import com.project.model.ProjectEntity;
 import com.project.model.StudentEntity;
+import com.project.model.TaskEntity;
 import com.project.repositories.IProjectRepository;
+import com.project.repositories.ITaskRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ProjectService implements IProjectService {
     private final IProjectRepository projectRepository;
+    private final ITaskRepository taskRepository;
 
-    public ProjectService(IProjectRepository projectRepository) {
+    @Autowired
+    public ProjectService(IProjectRepository projectRepository, ITaskRepository taskRepository) {
         this.projectRepository = projectRepository;
+        this.taskRepository = taskRepository;
     }
 
     @Override
@@ -27,7 +35,7 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
-    public Page<ProjectEntity> findAllByName(String name, Pageable pageable) {
+    public Page<ProjectEntity> findByName(String name, Pageable pageable) {
         return projectRepository.findByNameContainingIgnoreCase(name, pageable);
     }
 
@@ -37,27 +45,12 @@ public class ProjectService implements IProjectService {
         return projectRepository.save(projectEntity);
     }
 
-    @Transactional
-    @Override
-    public void update(Long id, ProjectEntity projectEntity) {
-        Optional<ProjectEntity> project = this.findById(id);
-
-        if (project.isEmpty()) {
-            return;
-        }
-
-        projectRepository.save(projectEntity);
-    }
-
     @Override
     @Transactional
     public void delete(Long id) {
-        Optional<ProjectEntity> projectEntity = this.findById(id);
-
-        if (projectEntity.isEmpty()) {
-            return;
+        for (TaskEntity taskEntity : taskRepository.findProjectTasks(id)) {
+            taskRepository.delete(taskEntity);
         }
-
-        projectRepository.delete(projectEntity.get());
+        projectRepository.deleteById(id);
     }
 }

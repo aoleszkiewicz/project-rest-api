@@ -1,0 +1,56 @@
+package com.project.controllers;
+
+import com.project.model.StudentEntity;
+import com.project.services.IStudentService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+
+@RestController
+@RequestMapping("/api/v1/students")
+public class StudentController {
+    private final IStudentService studentService;
+
+    @Autowired
+    public StudentController(IStudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    @GetMapping()
+    public Page<StudentEntity> getStudents(Pageable pageable) {
+        return studentService.findAll(pageable);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<StudentEntity> getStudentById(@PathVariable("id") Long id) {
+        return ResponseEntity.of(studentService.findById(id));
+    }
+
+    @PostMapping()
+    public ResponseEntity<StudentEntity> saveStudent(
+            @Valid @RequestBody StudentEntity studentEntity
+    ) {
+        StudentEntity student = studentService.save(studentEntity);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(student.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateStudent(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody StudentEntity studentEntity
+    ) {
+        studentService.update(id, studentEntity);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+}

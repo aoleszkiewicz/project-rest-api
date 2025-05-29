@@ -29,9 +29,9 @@ public class StudentController {
         return studentService.findAll(pageable);
     }
 
-    @GetMapping()
+    @GetMapping(params = "name")
     public Page<StudentEntity> getStudentsByName(
-            @RequestParam String name,
+            @RequestParam(name = "name") String name,
             Pageable pageable
     ) {
         return studentService.findAllByLastname(name, pageable);

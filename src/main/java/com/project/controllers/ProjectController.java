@@ -66,12 +66,12 @@ public class ProjectController {
             @Valid @RequestBody ProjectEntity projectEntity
     ) {
         return projectService.findById(id).map(project -> {
-            projectService.save(project);
+            projectService.save(projectEntity);
             return new ResponseEntity<Void>(HttpStatus.OK);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProject(@PathVariable("id") Long id) {
         return projectService.findById(id).map(project -> {
             projectService.delete(id);

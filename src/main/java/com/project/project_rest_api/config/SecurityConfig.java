@@ -1,4 +1,4 @@
-package com.project.config;
+package com.project.project_rest_api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
-package com.project.services;
+package com.project.project_rest_api.services;
 
-import com.project.model.TaskEntity;
+import com.project.project_rest_api.model.TaskEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

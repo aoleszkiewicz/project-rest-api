@@ -1,7 +1,7 @@
-package com.project.controllers;
+package com.project.project_rest_api.controllers;
 
-import com.project.model.TaskEntity;
-import com.project.services.ITaskService;
+import com.project.project_rest_api.model.TaskEntity;
+import com.project.project_rest_api.services.ITaskService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

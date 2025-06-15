@@ -1,6 +1,6 @@
-package com.project.services;
+package com.project.project_rest_api.services;
 
-import com.project.model.StudentEntity;
+import com.project.project_rest_api.model.StudentEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface IStudentService {
     Optional<StudentEntity> findById(Long id);
-    Optional<StudentEntity> findByAlbumNumber(String albumNumber);
+    Optional<StudentEntity> findByIndexNumber(String albumNumber);
     Page<StudentEntity> findAll(Pageable pageable);
     Page<StudentEntity> findAllByLastname(String lastname, Pageable pageable);
     StudentEntity save(StudentEntity studentEntity);

@@ -1,7 +1,7 @@
-package com.project.controllers;
+package com.project.project_rest_api.controllers;
 
-import com.project.model.ProjectEntity;
-import com.project.services.IProjectService;
+import com.project.project_rest_api.model.ProjectEntity;
+import com.project.project_rest_api.services.IProjectService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

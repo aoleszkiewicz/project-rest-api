@@ -1,6 +1,6 @@
-package com.project.repositories;
+package com.project.project_rest_api.repositories;
 
-import com.project.model.TaskEntity;
+import com.project.project_rest_api.model.TaskEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

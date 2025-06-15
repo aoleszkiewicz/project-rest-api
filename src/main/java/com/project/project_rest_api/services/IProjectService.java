@@ -1,7 +1,6 @@
-package com.project.services;
+package com.project.project_rest_api.services;
 
-import com.project.model.ProjectEntity;
-import com.project.model.StudentEntity;
+import com.project.project_rest_api.model.ProjectEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

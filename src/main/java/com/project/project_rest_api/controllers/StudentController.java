@@ -1,7 +1,7 @@
-package com.project.controllers;
+package com.project.project_rest_api.controllers;
 
-import com.project.model.StudentEntity;
-import com.project.services.IStudentService;
+import com.project.project_rest_api.model.StudentEntity;
+import com.project.project_rest_api.services.IStudentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +35,13 @@ public class StudentController {
             Pageable pageable
     ) {
         return studentService.findAllByLastname(name, pageable);
+    }
+
+    @GetMapping(params = "indexNumber")
+    public ResponseEntity<StudentEntity> getStudentsByIndexNumber(
+            @RequestParam(name = "indexNumber") String indexNumber
+    ) {
+        return ResponseEntity.of(studentService.findByIndexNumber(indexNumber));
     }
 
     @GetMapping("/{id}")

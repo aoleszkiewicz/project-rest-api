@@ -1,7 +1,7 @@
-package com.project.services;
+package com.project.project_rest_api.services;
 
-import com.project.model.TaskEntity;
-import com.project.repositories.ITaskRepository;
+import com.project.project_rest_api.model.TaskEntity;
+import com.project.project_rest_api.repositories.ITaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

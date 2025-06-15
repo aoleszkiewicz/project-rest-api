@@ -1,10 +1,10 @@
-package com.project.services;
+package com.project.project_rest_api.services;
 
 
-import com.project.model.ProjectEntity;
-import com.project.model.StudentEntity;
-import com.project.repositories.IProjectRepository;
-import com.project.repositories.IStudentRepository;
+import com.project.project_rest_api.model.ProjectEntity;
+import com.project.project_rest_api.model.StudentEntity;
+import com.project.project_rest_api.repositories.IProjectRepository;
+import com.project.project_rest_api.repositories.IStudentRepository;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +34,8 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public Optional<StudentEntity> findByAlbumNumber(String albumNumber) {
-        return studentRepository.findByAlbumNumber(albumNumber);
+    public Optional<StudentEntity> findByIndexNumber(String indexNumber) {
+        return studentRepository.findByIndexNumber(indexNumber);
     }
 
     @Override

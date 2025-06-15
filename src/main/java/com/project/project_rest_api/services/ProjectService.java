@@ -1,10 +1,9 @@
-package com.project.services;
+package com.project.project_rest_api.services;
 
-import com.project.model.ProjectEntity;
-import com.project.model.StudentEntity;
-import com.project.model.TaskEntity;
-import com.project.repositories.IProjectRepository;
-import com.project.repositories.ITaskRepository;
+import com.project.project_rest_api.model.ProjectEntity;
+import com.project.project_rest_api.model.TaskEntity;
+import com.project.project_rest_api.repositories.IProjectRepository;
+import com.project.project_rest_api.repositories.ITaskRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

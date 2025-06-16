@@ -4,19 +4,25 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "project")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class ProjectEntity {
     @Id
@@ -55,4 +61,32 @@ public class ProjectEntity {
         }
     )
     private List<StudentEntity> students;
+
+
+    public ProjectEntity(Long id, String nazwa, String opis, LocalDateTime now) {
+        this.Id = id;
+        this.name = nazwa;
+        this.description = opis;
+        this.createdAt = now;
+    }
+
+    public ProjectEntity(String nazwa, String opis, LocalDateTime now) {
+        this.name = nazwa;
+        this.description = opis;
+        this.createdAt = now;
+    }
+
+    public ProjectEntity(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public ProjectEntity(Long id, String name, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.Id = id;
+        this.name = name;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 }
